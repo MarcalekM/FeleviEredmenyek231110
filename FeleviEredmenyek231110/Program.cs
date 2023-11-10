@@ -25,6 +25,11 @@ namespace FeleviEredmenyek231110
 
             Console.WriteLine("1. feladat:");
             Console.WriteLine($"\tAz osztályátlag:  {Osztalyatlag(tanulok)}");
+            var atlagok = OraAtlag(tanulok, tanorak);
+            for (int i = 0; i < tanorak.Count; i++)
+            {
+                Console.WriteLine($"{tanorak[i]}:  {atlagok[i]}");
+            }
 
             Console.WriteLine("2. feladat:");
             int index = tanorak.IndexOf("Programozás gyakorlat");
@@ -62,6 +67,24 @@ namespace FeleviEredmenyek231110
             }
             atlag /= tanulok.Count();
             return atlag;
+        }
+        static List<double> OraAtlag(List<Tanulo> tanulok, List<string> tanorak)
+        {
+            List<double> oraAtlagok = new();
+            double atlag = 0;
+            int oszto = 0;
+            for (int i = 0; i < tanulok.Count; i++)
+            {
+                for (int j = 0; j < tanulok[i].Jegyek.Count; j++)
+                {
+                    atlag += tanulok[i].Jegyek[j];
+                    oszto = tanulok[i].Jegyek.Count;
+                }
+                atlag /= oszto;
+                oraAtlagok.Add(atlag);
+                atlag = 0;
+            }
+            return oraAtlagok;
         }
 
         static int LegjobbJegy(string nev, List<Tanulo> tanulok)
