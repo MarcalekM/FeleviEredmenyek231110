@@ -16,7 +16,7 @@ namespace FeleviEredmenyek231110
                 path: @"..\..\..\src\Eredmenyek.txt",
                 encoding: UTF8Encoding.UTF8);
             string sor = sr.ReadLine();
-            while (!sr.EndOfStream) if(sr.ReadLine() != null) tanulok.Add(new(sr.ReadLine()));
+            while (!sr.EndOfStream) if (sr.ReadLine() != null) tanulok.Add(new(sr.ReadLine()));
             var v = sor.Split('\t');
             for (int i = 2; i < v.Length; i++)
             {
@@ -33,6 +33,14 @@ namespace FeleviEredmenyek231110
             {
                 Console.WriteLine($"\tNév:  {b.Nev}\n\tTanulóikód:  {b.Kod}");
             }
+
+            Console.WriteLine("3. feladat:");
+
+
+            Console.WriteLine("4.feladat:");
+            Console.Write("Adja meg a keresett tanuló nevét:  ");
+            string nev = Console.ReadLine();
+            Console.WriteLine($"\t{nev} legjobb jegye:  {LegjobbJegy(nev, tanulok)}");
 
             using StreamWriter sw = new(
                 path: @"..\..\..\src\Eredmenyek2.txt",
@@ -54,6 +62,27 @@ namespace FeleviEredmenyek231110
             }
             atlag /= tanulok.Count();
             return atlag;
+        }
+
+        static int LegjobbJegy(string nev, List<Tanulo> tanulok)
+        {
+            int jegy = 0;
+            foreach (var t in tanulok)
+            {
+                if (t.Nev == nev)
+                {
+                    for (int i = 0; i < t.Jegyek.Count; i++)
+                    {
+                        if (t.Jegyek[i] > jegy)  jegy = t.Jegyek[i];
+                    }
+                }
+            }
+            return jegy;
+        }
+
+        static Tanulo ElsoHarmas(List<Tanulo> tanulok)
+        {
+
         }
     }
 }
