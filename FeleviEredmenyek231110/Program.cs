@@ -35,7 +35,7 @@ namespace FeleviEredmenyek231110
             }
 
             Console.WriteLine("3. feladat:");
-
+            Console.WriteLine(ElsoHarmas(tanulok, tanorak));
 
             Console.WriteLine("4.feladat:");
             Console.Write("Adja meg a keresett tanuló nevét:  ");
@@ -80,9 +80,11 @@ namespace FeleviEredmenyek231110
             return jegy;
         }
 
-        static Tanulo ElsoHarmas(List<Tanulo> tanulok)
+        static string ElsoHarmas(List<Tanulo> tanulok, List<string> tanorak)
         {
-
+            int index = tanorak.IndexOf("Angol nyelv");
+            var tanulo = tanulok.Where(t => t.Jegyek[index].Equals(3)).First();
+            return $"\tNév:  {tanulo.Nev}\n\tKód:  {tanulo.Kod}";
         }
     }
 }
