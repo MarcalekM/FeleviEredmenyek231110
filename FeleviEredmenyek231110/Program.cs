@@ -28,7 +28,7 @@ namespace FeleviEredmenyek231110
             var atlagok = OraAtlag(tanulok, tanorak);
             for (int i = 0; i < tanorak.Count; i++)
             {
-                Console.WriteLine($"{tanorak[i]}:  {atlagok[i]}");
+                Console.WriteLine($"\t{tanorak[i]}:  {atlagok[i]}");
             }
 
             Console.WriteLine("2. feladat:");
